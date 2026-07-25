@@ -1,0 +1,365 @@
+
+# 1. Memory in Java
+
+When we run a Java program, the JVM allocates memory. For now, focus on these two areas:
+
+
+        Java Memory
+       ┌───────────────┐
+       │     Heap      │
+       │ (Objects)     │
+       └───────────────┘
+               ▲
+               │
+       ┌───────────────┐
+       │   Call Stack  │
+       │ (Methods)     │
+       └───────────────┘
+
+
+## Call Stack
+
+Stores:
+
+* Method calls
+* Local variables
+* Parameters
+
+## Heap
+
+Stores:
+
+* Objects
+* Arrays
+* Strings (with some JVM optimizations)
+
+
+---
+
+# 2. What is the Call Stack?
+
+Every time a method is called, Java creates a **stack frame** for it.
+
+Example:
+        public class Demo {
+            static void fun() {
+                System.out.println("Fun");
+            }
+            public static void main(String[] args) {
+                fun();
+            }
+        }
+
+
+---
+Before fun() is called 
+
+Call Stack
+
+┌──────────────┐
+│    main()    │
+└──────────────┘
+
+
+---
+
+During fun()
+
+Call Stack
+
+┌──────────────┐
+│    fun()     │
+├──────────────┤
+│    main()    │
+└──────────────┘
+
+
+The most recently called method is always on top.
+
+---
+
+After fun() finishes
+
+
+Call Stack
+
+┌──────────────┐
+│    main()    │
+└──────────────┘
+
+
+When main() finishes:
+
+
+Call Stack
+
+(empty)
+
+
+Program ends.
+
+---
+
+# Example with Three Methods
+
+                public class Demo {
+                    static void A() {
+                        B();
+                    }
+                    static void B() {
+                        C();
+                    }
+                    static void C() {
+                        System.out.println("Hello");
+                    }
+                    public static void main(String[] args) {
+                        A();
+                    }
+                }
+
+
+Execution:
+
+
+                   main()
+                    ↓
+                    A()
+                    ↓
+                    B()
+                    ↓
+                    C()
+
+
+Call Stack:
+
+
+            ┌──────────────┐
+            │    C()       │
+            ├──────────────┤
+            │    B()       │
+            ├──────────────┤
+            │    A()       │
+            ├──────────────┤
+            │   main()     │
+            └──────────────┘
+
+
+After C() returns:
+
+
+            ┌──────────────┐
+            │    B()       │
+            ├──────────────┤
+            │    A()       │
+            ├──────────────┤
+            │   main()     │
+            └──────────────┘
+
+
+Then B() returns, then A(), then main().
+
+This is why it's called a **stack**—Last In, First Out (LIFO).
+
+---
+
+# 3. Local Variables in the Call Stack
+
+Example:
+
+
+        public class Demo {
+
+            static void square(int x) {
+                int y = x * x;
+                System.out.println(y);
+            }
+
+            public static void main(String[] args) {
+                int a = 5;
+                square(a);
+            }
+        }
+
+
+### While square() is running
+
+
+Call Stack
+
+        ┌─────────────────────┐
+        │ square()            │
+        │ x = 5               │
+        │ y = 25              │
+        ├─────────────────────┤
+        │ main()              │
+        │ a = 5               │
+        └─────────────────────┘
+
+
+Notice:
+
+`a` belongs to `main()`
+`x` and `y` belong to `square()`
+
+Each method has its own local variables**.
+
+---
+
+# 4. Call by Value
+
+Java is call by value.
+
+This means:
+
+> A copy of the value is passed to the method.
+
+Example:
+
+
+        public class Demo {
+
+            static void change(int x) {
+                x = 100;
+            }
+
+            public static void main(String[] args) {
+
+                int a = 10;
+
+                change(a);
+
+                System.out.println(a);
+            }
+        }
+
+
+---
+
+### Memory
+
+Before call:
+
+
+main()
+
+a = 10
+
+Call:
+
+change(a)
+
+Java copies the value.
+
+main()
+
+a = 10
+
+↓
+
+change()
+
+x = 10
+
+
+Now:
+
+
+x = 100;
+
+
+becomes
+
+
+main()
+
+a = 10
+
+↓
+
+change()
+
+x = 100
+
+
+Only `x` changes.
+
+`a` remains unchanged.
+
+Output:
+
+
+10
+
+
+---
+
+# Why?
+
+Because Java passed:
+
+
+10
+
+
+not the variable itself.
+
+It created a copy.
+
+---
+
+# 5. Call by Reference
+
+In true call by reference, the method receives the **original variable**, not a copy.
+
+Example (conceptual, not Java):
+
+
+a = 10
+
+↓
+
+change(a)
+
+↓
+
+Original variable changes
+
+a = 100
+
+
+The caller's variable is modified directly.
+
+---
+
+# Does Java support Call by Reference?
+
+No.
+
+Java is always call by value.
+
+However, there's an important detail:
+
+When you pass an object, Java passes a copy of the reference**, not the object itself.
+
+For example:
+
+
+class Student {
+    int age = 20;
+}
+
+
+
+Student s = new Student();
+change(s);
+
+
+What gets copied?
+
+Not the object.
+
+The reference (the address-like value that points to the object) is copied.
+
+Both references point to the same object in the Heap, so changing the object's fields inside the method is visible outside the method.
+
+But if you assign the parameter to a **new object**, the caller's reference does not change. This is why Java is still classified as **call by value**.

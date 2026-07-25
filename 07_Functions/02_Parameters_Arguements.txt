@@ -1,0 +1,37 @@
+    
+============== Syntax with parameters ==============
+    returnType name(type param1, type param2){
+
+        //body
+    
+    return statement;
+    }
+
+    example: 
+        a,b --> a+body
+
+
+============== parameters ==============
+
+parameters are also known as formal parameters
+    present in function definition statement
+
+    public static int calculateSum(int num1,int num2){ 
+        int sum = num1+num2;
+        return sum;
+    }
+
+    in this function 
+                    num1 & num2 --> parameters
+
+
+============== arguments ==============
+
+arguments are also known as actual parameters
+    present in function call statement
+
+        int result=calculateSum(a, b);
+
+    in this function call statement
+                        a & b --> arguments
+                    

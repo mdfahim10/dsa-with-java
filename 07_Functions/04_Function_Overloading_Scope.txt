@@ -1,0 +1,202 @@
+# Function Overloading
+
+Function Overloading means having multiple methods with the same name but different parameter lists.
+
+Java decides which method to call based on the arguments passed.
+
+---
+
+## 1. Function Overloading Using Parameters
+
+The **number of parameters** is different.
+
+
+        class Demo {
+
+            static void sum(int a) {
+                System.out.println(a);
+            }
+
+            static void sum(int a, int b) {
+                System.out.println(a + b);
+            }
+
+            public static void main(String[] args) {
+                sum(10);
+                sum(10, 20);
+            }
+        }
+
+
+Output:
+        10
+        30
+
+
+---
+
+## 2. Function Overloading Using Data Types
+
+The number of parameters is the same**, but their **data types** are different.
+
+
+        class Demo {
+            static void print(int a) {
+                System.out.println("Integer");
+            }
+
+            static void print(double a) {
+                System.out.println("Double");
+            }
+
+            public static void main(String[] args) {
+                print(10);
+                print(10.5);
+            }
+        }
+
+
+Output:
+        Integer
+        Double
+
+
+---
+
+## Rules of Function Overloading
+
+✔ Same method name
+
+✔ Different parameter list
+
+    Different number of parameters **OR**
+    Different data types
+
+❌ Only changing the return type is **not** overloading.
+
+Example (Invalid):
+
+    int sum(int a, int b)
+    double sum(int a, int b)
+
+
+This gives a compile-time error.
+
+---
+
+# Scope
+
+Scope means the **area where a variable can be accessed**.
+
+---
+
+## 1. Method Scope
+
+A variable declared inside a method can be used **only inside that method**.
+
+class Demo {
+
+    static void test() {
+        int x = 10;
+        System.out.println(x);
+    }
+
+    public static void main(String[] args) {
+        test();
+        // System.out.println(x); ❌ Error
+    }
+}
+
+
+`x` exists only inside `test()`.
+
+---
+
+## 2. Block Scope
+
+A variable declared inside a block ({ }) exists only inside that block.
+
+
+        class Demo {
+
+            public static void main(String[] args) {
+
+                if (true) {
+                    int x = 10;
+                    System.out.println(x);
+                }
+
+                // System.out.println(x); ❌ Error
+            }
+        }
+
+
+The variable `x` cannot be accessed outside the `if` block.
+
+The same applies to blocks created by loops:
+
+
+    for (int i = 0; i < 5; i++) {
+        System.out.println(i);
+    }
+
+    // System.out.println(i); ❌ Error
+
+
+---
+
+## 3. Class Scope
+
+A variable declared directly inside a class (outside all methods) is called a **class variable (field)**.
+
+It can be accessed by all methods of that class.
+
+
+    class Demo {
+
+        static int x = 100;
+
+        static void fun() {
+            System.out.println(x);
+        }
+
+        public static void main(String[] args) {
+            System.out.println(x);
+            fun();
+        }
+    }
+
+
+Output:
+        100
+        100
+
+
+Here, `x` belongs to the class, so both `main()` and `fun()` can use it.
+
+---
+
+# Quick Revision
+
+## Function Overloading
+
+| Type             | Difference                      |
+| ---------------- | ------------------------------- |
+| Using Parameters | Number of parameters changes    |
+| Using Data Types | Data type of parameters changes |
+
+---
+
+## Scope
+
+| Scope        | Accessible Where?                                   |
+| ------------ | --------------------------------------------------- |
+| Method Scope | Only inside that method                             |
+| Block Scope  | Only inside that block (`if`, `for`, `while`, etc.) |
+| Class Scope  | Throughout the class (all methods can access it)    |
+
+### Memory Trick
+
+* **Method Scope** → Inside one **method** only.
+* **Block Scope** → Inside one **pair of `{}`** only.
+* **Class Scope** → Available to **all methods in the class**.

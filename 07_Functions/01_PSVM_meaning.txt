@@ -1,0 +1,76 @@
+Functions : block of code or reusable code
+
+input --> [Functions] --> Output
+
+example :
+            a,b --> sum
+            n --> 1 to n
+            n --> n!
+        
+        returnType (    ){          Type -> output
+            //body
+            return statement;
+        }
+
+        //meaning of psvm 
+Public static void main(String args[])
+
+    public -> It is an access modifier.
+            It tells Java:
+                "This method can be accessed from anywhere."
+            Think of your house.
+                public → Main gate (everyone can enter)
+                private → Your bedroom (only you)
+                Java needs to access the main() method to start your program, so it must be public.
+
+    static -> static means the method belongs to the class, not to an object.
+        example: 
+            class Demo {
+                    static void greet() {
+                        System.out.println("Hello");
+                    }
+                }
+        Since greet() is static, Java can call it directly.
+        Without static, Java would first need to create an object.
+        You'll understand this much better when you learn Objects and Classes.
+        For now, simply remember:
+        static = belongs to the class
+
+    void -> void is the return type.
+        It tells Java:
+                "This method does not return any value."
+        Example:
+                void display() {
+                    System.out.println("Hello");
+                }
+        This method prints something but returns nothing.
+
+    main -> This is simply the method name.
+        Java always starts execution from a method named:
+            main()
+
+    String[] args -> This is called the parameter of the main() method.
+        It stores command-line arguments.
+            For beginners, you can think of it as:
+            "An array of strings that Java can receive when the program starts."
+            Example:
+                java Demo Fahim 20 Kolkata
+            Then:
+                args[0] = Fahim
+                args[1] = 20
+                args[2] = Kolkata
+            You usually won't use this until later.
+
+
+Putting It All Together
+
+public static void main(String[] args)
+means:
+    public → Java can access this method.
+    static → Java can call it without creating an object.
+    void → It returns nothing.
+    main → This is the starting method.
+    String[] args → Receives command-line arguments.
+
+
+    
