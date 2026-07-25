@@ -1,7 +1,6 @@
-If you want a **clean, premium, GitHub-style README**, less is more. Here's one I'd recommend:
 
-```md
-<div align="center">
+
+
 
 <div align="center">
 
