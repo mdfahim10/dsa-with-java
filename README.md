@@ -3,13 +3,17 @@ If you want a **clean, premium, GitHub-style README**, less is more. Here's one 
 ```md
 <div align="center">
 
+<div align="center">
+
 # 🚀 DSA with Java
 
 ### Learning Data Structures & Algorithms using Java — one concept at a time.
 
-![Java](https://user-images.githubusercontent.com/102182985/261034341-f3c03b4b-5cb6-4ef5-ad35-0a457f5e56cd.png)
-![Status](https://img.shields.io/badge/Status-Learning-success?style=for-the-badge)
-![GitHub last commit](https://img.shields.io/github/last-commit/mdfahim10/dsa-with-java?style=for-the-badge)
+<img src="https://img.shields.io/badge/Language-Java-orange?style=for-the-badge&logo=openjdk"/>
+
+<img src="https://img.shields.io/badge/Status-Learning-success?style=for-the-badge"/>
+
+<img src="https://img.shields.io/github/last-commit/mdfahim10/dsa-with-java?style=for-the-badge"/>
 
 </div>
 
