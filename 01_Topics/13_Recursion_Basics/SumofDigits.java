@@ -1,17 +1,19 @@
 import java.util.Scanner;
-
-public class SumofDigits {
-    public static int sum(int n){
-        if(n==0){
-            return 0;
+public class SumOfDigits {
+    public static int summation(int n) {
+        if (n < 10) {
+            return n;
         }
-        int r=n%10;
-        return r+sum(n/10);
+        int r = n % 10;
+        n = n / 10;
+        int sumDigits = r + summation(n);
+        return sumDigits;
     }
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
-        System.out.print("Enter a number :  ");
-        int n=sc.nextInt();
-        System.out.println("Sum of digits : "+sum(n));
+        System.out.print("Enter number: ");
+        int n = sc.nextInt();
+        System.out.println("Sum: " + summation(n));
+        sc.close();
     }
 }
