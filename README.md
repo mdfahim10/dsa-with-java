@@ -36,7 +36,7 @@ This repository contains my journey of learning **Data Structures & Algorithms (
 
 <div align="center">
 
-### ⭐ *"Consistency beats intensity."*
+###  *"Consistency beats intensity."*
 
 If you find this repository helpful, consider giving it a ⭐.
 
@@ -45,7 +45,7 @@ If you find this repository helpful, consider giving it a ⭐.
 
 This is the kind of README you'll often see on polished GitHub repositories:
 
-* ✨ Minimal
-* 🚀 Professional
-* 📱 Looks good on both desktop and mobile
-* 🔥 Easy to expand later without rewriting everything.
+*  Minimal
+*  Professional
+*  Looks good on both desktop and mobile
+*  Easy to expand later without rewriting everything.
