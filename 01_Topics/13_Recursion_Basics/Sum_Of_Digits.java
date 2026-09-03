@@ -1,5 +1,5 @@
 import java.util.Scanner;
-public class SumOfDigits {
+public class Sum_Of_Digits {
     public static int summation(int n) {
         if (n < 10) {
             return n;
