@@ -1,4 +1,5 @@
 import java.util.*;
+
 public class LastOccurence {
     public static int lastOccurence(int arr[], int key, int i) {
         if (i < 0) {
@@ -9,6 +10,7 @@ public class LastOccurence {
         }
         return lastOccurence(arr, key, i - 1);
     }
+
     public static void main(String[] args) {
         Scanner sc = new Scanner(System.in);
         System.out.print("Enter number of elements: ");
